@@ -30,3 +30,59 @@ async function fetchData(){
       </ul>
     </div>`;
     }
+    async function fetchUser(){
+        let url="https://jsonplaceholder.typicode.com/users"
+           try{
+            let reponse=await fetch(url); //url 
+            let users=await reponse.json(); //json
+            console.log(users);
+            let postArea=document.querySelector("#post-area");
+            let userUIs="";
+            for(let user of users){
+               // console.log(`Title : ${user.title}\nContent:${post.body}`)
+        //console.log("User",user);      
+          let u = getUser(user);
+        
+                userUIs+=u;
+            }
+        console.log(userUIs);
+            postArea.innerHTML=userUIs;
+           }catch(err){
+           }
+        }
+        function getUser(user){
+            console.log(user);
+            return `<div class="card">
+            <div class="card-body">
+              <h5 class="card-title">${user.name}</h5>
+              <h6 class="card-subtitle mb-2  text-body-secondary">${user.username}</h6>
+              <h6 class="card-subtitle mb-2  text-body-secondary">${user.email}</h6>
+              <h6 class="card-subtitle mb-2  text-body-secondary">${user.phone}</h6>
+              <h6 class="card-subtitle mb-2  text-body-secondary">${user.website}</h6>
+            <h6> ${user.address.street},${user.address.suite},
+            ${user.address.city},
+            ${user.address.zipcode},
+            ${user.address.geo.lat},
+            ${user.address.geo.lng},
+            </h6>        
+
+            
+            <p class="card-text">
+          ${user.company.name},
+          ${user.company.catchPhrase},
+          ${user.company.bs},
+
+            </p>
+
+              <a href="#" class="card-link">Detail link</a>
+            </div>
+          </div>`
+        }
+        // "phone": "1-770-736-8031 x56442",
+        // "website": "hildegard.org",
+        // "company": {
+        //   "name": "Romaguera-Crona",
+        //   "catchPhrase": "Multi-layered client-server neural-net",
+        //   "bs": "harness real-time e-markets"
+        // }
+    
