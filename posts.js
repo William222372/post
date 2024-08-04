@@ -17,7 +17,7 @@ async function fetchData(){
        }
     }
     function getPost(post){
-        return <div class="card col-md-3">
+        return `<div class="card col-md-3">
       <div class="card-body">
         <h5 class="card-title ">${post.title}</h5>
         <hr />
@@ -28,5 +28,5 @@ async function fetchData(){
         <a href="#" class="btn btn-primary">Details</a>
         </li>
       </ul>
-    </div>;
+    </div>`;
     }
