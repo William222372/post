@@ -85,4 +85,54 @@ async function fetchData(){
         //   "catchPhrase": "Multi-layered client-server neural-net",
         //   "bs": "harness real-time e-markets"
         // }
+        async function fetchPhoto(){
+          let url="https://jsonplaceholder.typicode.com/photos"
+             try{
+              let reponse=await fetch(url); //url 
+              let photos=await reponse.json(); //json
+              console.log(photos);
+              let postArea=document.querySelector("#post-area");
+              let photosUIs="";
+              for(let photo of photos){
+                 // console.log(`Title : ${user.title}\nContent:${post.body}`)
+          //console.log("User",user);      
+            let ui = getPho(photo);
+          photosUIs+=ui;
+          
+                  photosUIs+=ui;
+              }
+          console.log(userUIs);
+              postArea.innerHTML=userUIs;
+             }catch(err){
+             }
+          }
+
+          function getPho(photo){
+            console.log(photo);
+            return `<div class="card">
+            <div class="card-body">
+              <h5 class="card-title">${photo.title}</h5>
+              <h6 class="card-subtitle mb-2  text-body-secondary">${photo.url}</h6>
+              <h6 class="card-subtitle mb-2  text-body-secondary">${photo.thumbnailUrl}</h6>
+ 
+            <h6> ${user.address.street},${user.address.suite},
+            ${user.address.city},
+            ${user.address.zipcode},
+            ${user.address.geo.lat},
+            ${user.address.geo.lng},
+            </h6>        
+
+            
+            <p class="card-text">
+          ${user.company.name},
+          ${user.company.catchPhrase},
+          ${user.company.bs},
+
+            </p>
+
+              <a href="#" class="card-link">Detail link</a>
+            </div>
+          </div>`
+            
+          }
     
